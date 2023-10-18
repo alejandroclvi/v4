@@ -9,26 +9,22 @@ import { useStaticQuery, graphql } from 'gatsby';
 const Head = ({ title, description }) => {
   const { pathname } = useLocation();
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            defaultTitle: title
-            defaultDescription: description
-            siteUrl
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          defaultTitle: title
         }
       }
-    `,
-  );
+    }
+  `);
 
-  const { defaultTitle, defaultDescription, siteUrl, twitterUsername } = site.siteMetadata;
+  const { defaultTitle, twitterUsername } = site.siteMetadata;
 
   const seo = {
     title: title || defaultTitle,
-    description: description || defaultDescription,
-    url: `${siteUrl}${pathname}`,
+    description: description,
+    url: `${pathname}`,
   };
 
   return (
