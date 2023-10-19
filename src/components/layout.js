@@ -10,9 +10,8 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, location }) => {
+const Layout = ({ children, location, isLoading, isMounted }) => {
   const isHome = location.pathname === '/';
-  const [isLoading, setIsLoading] = useState(isHome);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
@@ -59,8 +58,7 @@ const Layout = ({ children, location }) => {
           </a>
 
           {isLoading && isHome ? (
-            <>
-            <Loader finishLoading={() => setIsLoading(false)} /></>
+            <Loader isMounted={isMounted}/>
           ) : (
             <StyledContent>
               <Nav isHome={isHome} />

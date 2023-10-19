@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import anime from 'animejs';
 import styled from 'styled-components';
 import { IconLoader } from '@components/icons';
 
@@ -21,7 +20,7 @@ const StyledLoader = styled.div`
     width: max-content;
     max-width: 100px;
     transition: var(--transition);
-    opacity: 1;
+    opacity: ${props => (props.isMounted ? 1 : 0)};
     svg {
       display: block;
       width: 100%;
@@ -36,50 +35,10 @@ const StyledLoader = styled.div`
   }
 `;
 
-const Loader = ({ finishLoading }) => {
-
-  const animate = () => {
-    const loader = anime.timeline({
-      complete: () => finishLoading(),
-    });
-
-    loader
-      .add({
-        targets: '#logo path',
-        delay: 300,
-        duration: 1500,
-        easing: 'easeInOutQuart',
-        strokeDashoffset: [anime.setDashoffset, 0],
-      })
-      .add({
-        targets: '#logo #B',
-        duration: 700,
-        easing: 'easeInOutQuart',
-        opacity: 1,
-      })
-      .add({
-        targets: '#logo',
-        delay: 500,
-        duration: 300,
-        easing: 'easeInOutQuart',
-        opacity: 0,
-        scale: 0.1,
-      })
-      .add({
-        targets: '.loader',
-        duration: 200,
-        easing: 'easeInOutQuart',
-        opacity: 0,
-        zIndex: -1,
-      });
-  };
-
-  useEffect(() => {
-   setTimeout(() => animate(), 10)
-  }, []);
+const Loader = ({ isMounted }) => {
 
   return (
-    <StyledLoader className="loader">
+    <StyledLoader className="loader" isMounted={isMounted}>
       <Helmet bodyAttributes={{ class: `hidden` }} />
 
       <div className="logo-wrapper">
@@ -90,7 +49,7 @@ const Loader = ({ finishLoading }) => {
 };
 
 Loader.propTypes = {
-  finishLoading: PropTypes.func.isRequired,
+  isMounted: PropTypes.bool.isRequired,
 };
 
 export default Loader;
