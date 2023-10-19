@@ -11,7 +11,6 @@ const StyledContent = styled.div`
 `;
 
 const Layout = ({ children, location, isLoading }) => {
-  const isHome = location.pathname === '/';
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
@@ -57,20 +56,16 @@ const Layout = ({ children, location, isLoading }) => {
             Skip to Content
           </a>
 
-          {isLoading && isHome ? (
-            <Loader/>
-          ) : (
-            <StyledContent>
-              <Nav isHome={isHome} />
-              <Social isHome={isHome} />
-              <Email isHome={isHome} />
+        <StyledContent>
+              <Nav  />
+              <Social  />
+              <Email  />
 
               <div id="content">
                 {children}
                 <Footer />
               </div>
             </StyledContent>
-          )}
         </ThemeProvider>
       </div>
     </>
