@@ -60,7 +60,7 @@ const Layout = ({ children, location }) => {
             Skip to Content
           </a>
 
-          {isLoading ? (
+          {isHome && isLoading ? (
             <Loader finishLoading={() => setIsLoading(false)} />
           ) : (
             <StyledContent>
