@@ -75,7 +75,7 @@ const Loader = ({ finishLoading }) => {
   };
 
   useEffect(() => {
-    animate();
+   setTimeout(() => animate(), 10)
   }, []);
 
   return (
