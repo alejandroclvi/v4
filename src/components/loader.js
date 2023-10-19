@@ -21,7 +21,7 @@ const StyledLoader = styled.div`
     width: max-content;
     max-width: 100px;
     transition: var(--transition);
-    opacity: ${props => (props.isMounted ? 1 : 0)};
+    opacity: 1;
     svg {
       display: block;
       width: 100%;
@@ -37,7 +37,6 @@ const StyledLoader = styled.div`
 `;
 
 const Loader = ({ finishLoading }) => {
-  const [isMounted, setIsMounted] = useState(false);
 
   const animate = () => {
     const loader = anime.timeline({
@@ -76,13 +75,11 @@ const Loader = ({ finishLoading }) => {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 10);
     animate();
-    return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <StyledLoader className="loader" isMounted={isMounted}>
+    <StyledLoader className="loader">
       <Helmet bodyAttributes={{ class: `hidden` }} />
 
       <div className="logo-wrapper">
