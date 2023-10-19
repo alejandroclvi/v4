@@ -80,7 +80,7 @@ const Loader = ({ finishLoading }) => {
     animate();
     return () => clearTimeout(timeout);
   }, []);
-  console.log('loading', isMounted)
+
   return (
     <StyledLoader className="loader" isMounted={isMounted}>
       <Helmet bodyAttributes={{ class: `hidden` }} />

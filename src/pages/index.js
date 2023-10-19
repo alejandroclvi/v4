@@ -7,17 +7,16 @@ const StyledMainContainer = styled.main`
   counter-reset: section;
 `;
 
-const IndexPage = ({ location }) => {
-  console.log('location', location)
-  return  (
-    <Layout location={location}>
-       <Hero />
-        <About />
-        <Jobs />
-        <Contact />
-    </Layout>
-  )
-};
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
+    <StyledMainContainer className="fillHeight">
+      <Hero />
+      <About />
+      <Jobs />
+      <Contact />
+    </StyledMainContainer>
+  </Layout>
+);
 
 IndexPage.propTypes = {
   location: PropTypes.object.isRequired,
