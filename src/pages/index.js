@@ -9,7 +9,6 @@ const StyledMainContainer = styled.main`
 `;
 
 const IndexPage = ({ location }) => {
-  const [isMounted, setIsMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const animate = () => {
     const loader = anime.timeline({
@@ -48,13 +47,13 @@ const IndexPage = ({ location }) => {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 10);
+    const timeout = setTimeout(() => setIsLoading(false), 4000);
     animate();
     return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <Layout location={location} isLoading={isLoading} isMounted={isMounted}>
+    <Layout location={location} isLoading={isLoading}>
       <StyledMainContainer className="fillHeight">
         <Hero />
         <About />

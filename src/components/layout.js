@@ -10,7 +10,7 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, location, isLoading, isMounted }) => {
+const Layout = ({ children, location, isLoading }) => {
   const isHome = location.pathname === '/';
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
