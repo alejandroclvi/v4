@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import anime from 'animejs';
@@ -8,11 +8,17 @@ const StyledMainContainer = styled.main`
   counter-reset: section;
 `;
 
-const IndexPage = ({ location }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const animate = () => {
+class IndexPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  animate = () => {
     const loader = anime.timeline({
-      complete: () => setIsLoading(false),
+      complete: () => this.setState({ isLoading: false }),
     });
 
     loader
@@ -46,22 +52,30 @@ const IndexPage = ({ location }) => {
       });
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 4000);
-    animate();
-    return () => clearTimeout(timeout);
-  }, []);
+  componentDidMount() {
+    this.timeout = setTimeout(() => this.setState({ isLoading: false }), 4000);
+    this.animate();
+  }
 
-  return (
-    <Layout location={location} isLoading={isLoading}>
-      <StyledMainContainer className="fillHeight">
-        <Hero />
-        <About />
-        <Jobs />
-        <Contact />
-      </StyledMainContainer>
-    </Layout>
-  );
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
+  render() {
+    const { location } = this.props;
+    const { isLoading } = this.state;
+
+    return (
+      <Layout location={location} isLoading={isLoading}>
+        <StyledMainContainer className="fillHeight">
+          <Hero />
+          <About />
+          <Jobs />
+          <Contact />
+        </StyledMainContainer>
+      </Layout>
+    );
+  }
 }
 
 IndexPage.propTypes = {
