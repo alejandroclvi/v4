@@ -53,7 +53,7 @@ class IndexPage extends Component {
   };
 
   componentDidMount() {
-    this.timeout = setTimeout(() => this.setState({ isLoading: false }), 4000);
+    //this.timeout = setTimeout(() => this.setState({ isLoading: false }), 4000);
     this.animate();
   }
 
@@ -67,12 +67,10 @@ class IndexPage extends Component {
 
     return (
       <Layout location={location} isLoading={isLoading}>
-        <StyledMainContainer className="fillHeight">
-          <Hero />
+        <Hero />
           <About />
           <Jobs />
           <Contact />
-        </StyledMainContainer>
       </Layout>
     );
   }
