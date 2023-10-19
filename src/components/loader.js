@@ -76,11 +76,14 @@ const Loader = ({ finishLoading }) => {
   };
 
   useEffect(() => {
-    //const timeout = setTimeout(() => setIsMounted(true), 10);
+    const timeout = setTimeout(() => setIsMounted(true), 10);
     setIsMounted(true)
-    animate();
-    ///return () => clearTimeout(timeout);
-  }, []);
+    const t2 = setTimeout(() => animate(), 1000)
+    return () => {
+      () => clearTimeout(timeout);
+      () => clearTimeout(t2)
+    }
+  }, [isMounted]);
 
   return (
     <StyledLoader className="loader" isMounted={isMounted}>
