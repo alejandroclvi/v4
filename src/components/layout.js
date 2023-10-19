@@ -59,9 +59,9 @@ const Layout = ({ children, location }) => {
           </a>
 
           {isLoading && isHome ? (
-            <>
+            <div style={{flex: 1, width: '100%', height: '100vh', backgroundColor: 'red'}}>
             <p>pinga</p>
-            <Loader finishLoading={() => setIsLoading(false)} /></>
+            </div>
           ) : (
             <StyledContent>
               <Nav isHome={isHome} />
