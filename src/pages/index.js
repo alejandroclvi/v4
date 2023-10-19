@@ -8,15 +8,14 @@ const StyledMainContainer = styled.main`
 `;
 
 const IndexPage = ({ location }) => (
-  // <Layout location={location}>
-  //   <StyledMainContainer className="fillHeight">
-  //     <Hero />
-  //     {/* <About />
-  //     <Jobs />
-  //     <Contact /> */}
-  //   </StyledMainContainer>
-  // </Layout>
-  <div><p>party</p></div>
+  <Layout location={location}>
+    <StyledMainContainer className="fillHeight">
+      {/* <Hero /> */}
+      <About />
+      <Jobs />
+      <Contact />
+    </StyledMainContainer>
+  </Layout>
 );
 
 IndexPage.propTypes = {
